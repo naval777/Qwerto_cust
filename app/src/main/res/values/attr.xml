@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Amenity">
+        <attr name="amenity_name" format="string" />
+        <attr name="image" format="reference"/>
+        <attr name="yes" format="boolean"/>
+    </declare-styleable>
+    
+    <declare-styleable name="AccoDetail">
+        <attr name="detailName" format="string"/>
+        <attr name="detail_icon" format="reference"/>
+        <attr name="isOpened" format="boolean"/>
+        <attr name="opened_view" format="reference"/>
+        <attr name="type" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="BlueprintDetails">
+        <attr name="detail_name" format="string"/>
+    </declare-styleable>
+</resources>
