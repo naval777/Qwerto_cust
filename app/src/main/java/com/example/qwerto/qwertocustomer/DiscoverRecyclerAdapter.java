@@ -8,17 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 public class DiscoverRecyclerAdapter extends RecyclerView.Adapter<DiscoverRecyclerAdapter.ContactViewHolder> {
 
     private List<DiscoverItem> itemList;
-    static Context c;
+    ProfileActivity profileActivity;
 
-    public DiscoverRecyclerAdapter(List<DiscoverItem> itemList, Context c) {
+    public DiscoverRecyclerAdapter(List<DiscoverItem> itemList, ProfileActivity pActivity) {
         this.itemList = itemList;
-        this.c = c;
+        this.profileActivity = pActivity;
+
     }
 
 
@@ -37,8 +39,8 @@ public class DiscoverRecyclerAdapter extends RecyclerView.Adapter<DiscoverRecycl
         contactViewHolder.vTitle.setText(ci.name);
         contactViewHolder.vProductName.setText(ci.productname);
         contactViewHolder.vPrice.setText(ci.price);
-        Typeface ralewaybold = Typeface.createFromAsset(c.getAssets(), "fonts/Raleway-Bold.ttf");
-        Typeface quicksand = Typeface.createFromAsset(c.getAssets(), "fonts/Quicksand-Regular.ttf");
+        Typeface ralewaybold = Typeface.createFromAsset(profileActivity.getAssets(), "fonts/Raleway-Bold.ttf");
+        Typeface quicksand = Typeface.createFromAsset(profileActivity.getAssets(), "fonts/Quicksand-Regular.ttf");
         contactViewHolder.vTitle.setTypeface(ralewaybold);
         contactViewHolder.vDesc.setTypeface(quicksand);
         contactViewHolder.vHashtags.setTypeface(quicksand);
@@ -52,7 +54,21 @@ public class DiscoverRecyclerAdapter extends RecyclerView.Adapter<DiscoverRecycl
         contactViewHolder.vFieldImage1.setImageResource(ci.fieldimage1);
         contactViewHolder.vFieldImage2.setImageResource(ci.fieldimage2);
         contactViewHolder.chattxt.setTypeface(quicksand);
+
+//        Toast.makeText(c, String.valueOf(contactViewHolder.get), Toast.LENGTH_LONG).show();
+        final View v = contactViewHolder.itemView;
+        v.post(new Runnable() {
+            @Override
+            public void run() {
+                int itemHeight = v.getHeight();
+                Toast.makeText(profileActivity, String.valueOf(itemHeight), Toast.LENGTH_LONG).show();
+                profileActivity.RecyclerHeight += itemHeight;
+                profileActivity.discoverRecycler.getLayoutParams().height += itemHeight;
+            }
+
+        });
     }
+
 
     @Override
     public ContactViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
