@@ -1,10 +1,10 @@
 package com.example.qwerto.qwertocustomer;
 
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ProfileActivity extends ActionBarActivity {
+public class GridActivity extends ActionBarActivity {
     RecyclerView discoverRecycler;
     private TextView toolbarheading;
     public int RecyclerHeight;
@@ -29,7 +29,7 @@ public class ProfileActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_grid);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -47,11 +47,11 @@ public class ProfileActivity extends ActionBarActivity {
         // Toast.makeText(getApplicationContext(), String.valueOf(discovercard.getHeight()),Toast.LENGTH_LONG).show();
         List<DiscoverItem> listdata = createList();
         discoverRecycler.getLayoutParams().height = 0;
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        discoverRecycler.setLayoutManager(llm);
+//        LinearLayoutManager llm = new LinearLayoutManager(this);
+//        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        discoverRecycler.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
 
-        DiscoverRecyclerAdapter adapter = new DiscoverRecyclerAdapter(listdata, ProfileActivity.this);
+        GridRecyclerAdapter adapter = new GridRecyclerAdapter(listdata, GridActivity.this);
         discoverRecycler.setAdapter(adapter);
         // discoverRecycler.getLayoutParams().height = 2000;
 
@@ -102,7 +102,6 @@ public class ProfileActivity extends ActionBarActivity {
         }
 
         if (id == R.id.action_grid) {
-            startActivity(new Intent(ProfileActivity.this, GridActivity.class));
             return true;
         }
 

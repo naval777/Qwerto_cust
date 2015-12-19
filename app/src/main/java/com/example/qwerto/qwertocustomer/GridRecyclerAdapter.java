@@ -1,6 +1,5 @@
 package com.example.qwerto.qwertocustomer;
 
-import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,12 +11,12 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class DiscoverRecyclerAdapter extends RecyclerView.Adapter<DiscoverRecyclerAdapter.ContactViewHolder> {
+public class GridRecyclerAdapter extends RecyclerView.Adapter<GridRecyclerAdapter.ContactViewHolder> {
 
     private List<DiscoverItem> itemList;
-    ProfileActivity profileActivity;
+    GridActivity profileActivity;
 
-    public DiscoverRecyclerAdapter(List<DiscoverItem> itemList, ProfileActivity pActivity) {
+    public GridRecyclerAdapter(List<DiscoverItem> itemList, GridActivity pActivity) {
         this.itemList = itemList;
         this.profileActivity = pActivity;
 
@@ -64,6 +63,7 @@ public class DiscoverRecyclerAdapter extends RecyclerView.Adapter<DiscoverRecycl
                 Toast.makeText(profileActivity, String.valueOf(itemHeight), Toast.LENGTH_LONG).show();
                 // profileActivity.RecyclerHeight += itemHeight;
                 profileActivity.discoverRecycler.getLayoutParams().height += itemHeight;
+                // profileActivity.discoverRecycler.getLayoutParams().height /= 3;
             }
 
         });
@@ -74,7 +74,7 @@ public class DiscoverRecyclerAdapter extends RecyclerView.Adapter<DiscoverRecycl
     public ContactViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.
                 from(viewGroup.getContext()).
-                inflate(R.layout.discover_card, viewGroup, false);
+                inflate(R.layout.grid_card, viewGroup, false);
 
         return new ContactViewHolder(itemView);
     }
